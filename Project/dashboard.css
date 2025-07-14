@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +18,7 @@ body {
     padding: 0 20px;
 }
 
-/* Header Styles */
+
 .header {
     background: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -81,12 +81,12 @@ body {
     color: #475569;
 }
 
-/* Main Content */
+
 .main-content {
     padding: 2rem 0;
 }
 
-/* Summary Cards */
+
 .summary-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -157,7 +157,7 @@ body {
     color: #10b981;
 }
 
-/* Dashboard Layout */
+
 .dashboard-layout {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -171,7 +171,7 @@ body {
     gap: 2rem;
 }
 
-/* Card Header */
+
 .card-header {
     padding: 1.5rem 1.5rem 1rem;
     display: flex;
@@ -186,7 +186,7 @@ body {
     color: #1e293b;
 }
 
-/* Buttons */
+
 .btn-primary,
 .btn-secondary,
 .btn-link {
@@ -230,7 +230,7 @@ body {
     color: #475569;
 }
 
-/* Accounts List */
+
 .accounts-list {
     padding: 1.5rem;
 }
@@ -286,14 +286,13 @@ body {
     color: #dc2626;
 }
 
-/* Chart Container */
+
 .chart-container {
     padding: 1.5rem;
     height: 300px;
     position: relative;
 }
 
-/* Expense Legend */
 .expense-legend {
     padding: 0 1.5rem 1.5rem;
 }
@@ -324,7 +323,7 @@ body {
     color: #1e293b;
 }
 
-/* Transactions List */
+
 .transactions-list {
     padding: 1.5rem;
 }
@@ -366,7 +365,7 @@ body {
     color: #dc2626;
 }
 
-/* Modal Styles */
+
 .modal {
     display: none;
     position: fixed;
@@ -415,7 +414,7 @@ body {
     color: #1e293b;
 }
 
-/* Form Styles */
+
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -455,7 +454,7 @@ form {
     padding: 1.5rem;
 }
 
-/* Quick Start Guide */
+
 .quick-start {
     position: fixed;
     bottom: 2rem;
@@ -491,7 +490,7 @@ form {
     justify-content: center;
 }
 
-/* Animations */
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -507,7 +506,7 @@ form {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .dashboard-layout {
         grid-template-columns: 1fr;
@@ -533,12 +532,12 @@ form {
     }
 }
 
-/* Hidden Balance */
+
 .balance-hidden {
     color: #64748b;
 }
 
-/* Empty State */
+
 .empty-state {
     text-align: center;
     padding: 2rem;
