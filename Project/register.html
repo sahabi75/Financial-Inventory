@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register Page</title>
+  <link rel="stylesheet" href="register.css" />
+</head>
+<body>
+
+  <div class="register-container">
+    <h2>Create Your Account</h2>
+    <form action="#" method="post">
+      
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="fname" placeholder="Enter first name">
+      <span id="fn"></span>
+      <br><br>
+
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lname" placeholder="Enter last name">
+      <br><br>
+
+      <label for="un">Username</label>
+      <input type="text" id="un" name="un" placeholder="Choose a username">
+      <span id="test"></span>
+      <br><br>
+
+      <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" required>
+            <span id="email"></span>
+            <br><br>
+
+      <label for="pass">Password</label>
+        <input type="password" placeholder="Enter Password" name="pass" id="pass">
+        <span id="cap"></span>
+        <span id="num"></span>
+        <span id="sm"></span>
+        <span id="sp"></span>
+        <br><br>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="Enter phone number">
+      <span id="ph"></span>
+      <br><br>
+
+      <label>Gender</label>
+      <div class="gender-options">
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+        <label><input type="radio" name="gender" value="Other"> Other</label>
+      </div>
+
+      <input type="submit" value="Register">
+
+      
+
+    </form>
+  </div>
+  <script src="register.js"></script>
+
+</body>
+</html>
