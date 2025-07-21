@@ -18,7 +18,7 @@ body {
 
 .register-container h2 {
   text-align: center;
-  color: blue;
+  color: rgb(76, 0, 255);
   margin-bottom: 25px;
 }
 
@@ -64,5 +64,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: blue;
+  background-color: rgb(0, 128, 255);
 }

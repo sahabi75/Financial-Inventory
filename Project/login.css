@@ -1,4 +1,4 @@
-/* General page style (optional) */
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f2f5f9;
@@ -9,7 +9,7 @@ body {
   margin: 0;
 }
 
-/* Login container */
+
 .login-container {
   background-color: #ffffff;
   padding: 30px 40px;
@@ -27,7 +27,7 @@ body {
   text-align: center;
 }
 
-/* Form elements */
+
 .login-container label {
   display: block;
   margin-bottom: 6px;
