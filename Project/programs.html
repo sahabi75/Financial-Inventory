@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programs</title>
+    <title>Programs - Financial Inventory</title>
     <link rel="stylesheet" href="programs.css">
 </head>
 <body>
@@ -16,10 +16,104 @@
                 <li><a href="about_us.html">About us</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="login.html">Login</a></li>
-            </ul>
-
-            
+            </ul>      
+        </nav>
     </header>
-    
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="text">
+                <h1>Our Financial Programs</h1>
+                <p>Discover comprehensive financial management tools designed to help you take control of your finances and achieve your goals.</p>
+                <button onclick="scrollToPrograms()">Explore Programs</button>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section class="programs-section" id="programs">
+            <div class="container">
+                <h2>Available Programs</h2>
+                <div class="programs-grid">
+                    
+                    <!-- Budget Tracker Program -->
+                    <div class="program-card">
+                        <div class="icon">💰</div>
+                        <h3>Budget Tracker</h3>
+                        <p>Take control of your spending with our comprehensive budget tracking system.</p>
+                        <ul class="features">
+                            <li>Monthly budget planning</li>
+                            <li>Expense categorization</li>
+                            <li>Real-time spending alerts</li>
+                            <li>Visual spending reports</li>
+                        </ul>
+                        <a href="#" class="btn">Start Tracking</a>
+                    </div>
+
+                    <!-- Investment Planner Program -->
+                    <div class="program-card">
+                        <div class="icon">📈</div>
+                        <h3>Investment Planner</h3>
+                        <p>Plan and track your investments with our smart investment management tools.</p>
+                        <ul class="features">
+                            <li>Portfolio analysis</li>
+                            <li>Risk assessment</li>
+                            <li>Goal-based investing</li>
+                            <li>Performance tracking</li>
+                        </ul>
+                        <a href="#" class="btn">Plan Investments</a>
+                    </div>
+
+                    <!-- Savings Goals Program -->
+                    <div class="program-card">
+                        <div class="icon">🎯</div>
+                        <h3>Savings Goals</h3>
+                        <p>Set and achieve your financial goals with our goal-oriented savings program.</p>
+                        <ul class="features">
+                            <li>Goal setting & tracking</li>
+                            <li>Automated savings plans</li>
+                            <li>Progress visualization</li>
+                            <li>Achievement rewards</li>
+                        </ul>
+                        <a href="#" class="btn">Set Goals</a>
+                    </div>
+
+                    <!-- Financial Education Program -->
+                    <div class="program-card">
+                        <div class="icon">📚</div>
+                        <h3>Financial Education</h3>
+                        <p>Learn essential financial skills through our comprehensive education program.</p>
+                        <ul class="features">
+                            <li>Interactive courses</li>
+                            <li>Financial calculators</li>
+                            <li>Expert guidance</li>
+                            <li>Certification programs</li>
+                        </ul>
+                        <a href="#" class="btn">Start Learning</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Financial Inventory. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToPrograms() {
+            document.getElementById('programs').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+    </script>
 </body>
 </html>
