@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f2f2f2;
+    color: #088a61;
+
+}
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+.navbar {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar .logo h2 {
+    color: #ecf0f1;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.navbar .nav-link {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+.navbar .nav-link li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: 500;
+}
+.navbar .nav-link li a:hover {
+    color: #1abc9c;
+    background-color: rgba(26, 188, 156, 0.1);
+    transform: translateY(-2px);
+}
+/* Additional Utility Styles */
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: #12856599;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+}
+.text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.text button {
+    background-color: #1ba877;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.text button:hover {
+    background-color: #1ba081;
+    transform: scale(1.05);
+}
+.text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+/* Smooth scrolling */
+html {          
+    scroll-behavior: smooth;
+}

@@ -7,7 +7,7 @@
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     line-height: 1.6;
-    color: #333;
+    color: #088a61;
   }
 
 
@@ -15,13 +15,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #111;
+    background-color: #1b9466;
     padding: 20px 40px;
   }
   .logo h2 {
     font-size: 28px;
     font-weight: bold;
-    color: #f44336;
+    color: #ffffff;
   }
   .nav-link {
     list-style: none;
@@ -35,7 +35,7 @@
     transition: color 0.3s;
   }
   .nav-link li a:hover {
-    color: #f44336;
+    color: #18a88b;
   }
 
 
@@ -56,7 +56,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    background-color: rgba(0,0,0,0.6);
+    background-color: #12856599;
     padding: 30px;
     text-align: center;
     border-radius: 10px;
@@ -70,7 +70,7 @@
     margin-bottom: 20px;
   }
   .text button {
-    background-color: #f44336;
+    background-color: #1ba877;
     color: white;
     border: none;
     padding: 12px 30px;
@@ -81,7 +81,7 @@
     transition: background-color 0.3s, transform 0.2s;
   }
   .text button:hover {
-    background-color: #d32f2f;
+    background-color: #1ba081;
     transform: scale(1.05);
   }
   .Description {
@@ -102,7 +102,7 @@
         margin-bottom: 20px;
     }
 .card {
-    background-color: yellow;
+    background-color: rgb(33, 156, 130);
     border-radius: 10px;
     padding: 20px;
     max-width: 300px;
@@ -111,8 +111,7 @@
 
 
 footer {
-  background-color: #2c3e50; /* Dark, professional tone */
-  color: #ecf0f1;            /* Light text for contrast */
+  background-color: #2c3e50; 
   padding: 20px 0;
   font-family: 'Segoe UI', sans-serif;
   font-size: 14px;
@@ -148,6 +147,6 @@ footer {
 }
 
 .footer-links a:hover {
-  color: #f1c40f; /* Gold hover effect */
+  color: #f1c40f; 
 }
 
