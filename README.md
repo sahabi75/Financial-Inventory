@@ -224,7 +224,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions, suggestions, or need support:
 
-- **Email:** sahabi15-4842@diu.edu.bd
+- **Email:** das15-4906@diu.edu.bd sahabi15-4842@diu.edu.bd 
 - **Project Issues:** [GitHub Issues](https://github.com/sahabi75/Financial-Inventory/issues)
 - **Discussions:** [GitHub Discussions](https://github.com/sahabi75/Financial-Inventory/discussions)
 
