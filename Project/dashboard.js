@@ -18,6 +18,16 @@ function updateUI() {
   renderAccounts();
   renderExpenseChart();
   renderTransactions();
+  
+  // Make the current page's nav link active
+  const currentPath = window.location.pathname;
+  const filename = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+  const navLinks = document.querySelectorAll('.nav-link li a');
+  navLinks.forEach(link => {
+    if (link.getAttribute('href') === filename) {
+      link.classList.add('active');
+    }
+  });
 }
 
 

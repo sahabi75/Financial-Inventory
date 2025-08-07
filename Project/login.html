@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Money Monetory</title>
+    <title>Login - Financial Inventory</title>
     <link rel="stylesheet" href="login.css">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo"><h2>Financial Inventory</h2></div>
+            <ul class="nav-link">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="about_us.html">About us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="active">Login</a></li>
+            </ul>      
+        </nav>
+    </header>
+
     <div class="login-container">
-        <h2>Login to Money Monetory</h2>
+        <h2>Login to Financial Inventory</h2>
         <form action="" autocomplete="on">
             <label for="un">Username</label>
             <input type="text" name="un" id="un" placeholder="Enter your user name" required>
@@ -22,5 +36,21 @@
             <p>Don't have an account? <a href="register.html">Sign up</a></p>
         </form>
     </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Financial Inventory. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </footer>
+    
     <script src="login.js"></script>
+</body>
 </html>

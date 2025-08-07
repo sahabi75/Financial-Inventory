@@ -1,23 +1,73 @@
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f5f9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar Styles */
+.navbar {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar .logo h2 {
+  color: #ecf0f1;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .nav-link {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar .nav-link li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.navbar .nav-link li a:hover,
+.navbar .nav-link li a.active {
+  color: #1abc9c;
+  background-color: rgba(26, 188, 156, 0.1);
+  transform: translateY(-2px);
+}
 
 .login-container {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
   padding: 30px 40px;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  width: 350px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 400px;
   max-width: 90%;
-  box-sizing: border-box;
+  margin: 80px auto;
 }
 
 .login-container h2 {

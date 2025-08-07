@@ -2,10 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Register Page</title>
+  <title>Register - Financial Inventory</title>
   <link rel="stylesheet" href="register.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+  <header>
+    <nav class="navbar">
+      <div class="logo"><h2>Financial Inventory</h2></div>
+      <ul class="nav-link">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="about_us.html">About us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>      
+    </nav>
+  </header>
 
   <div class="register-container">
     <h2>Create Your Account</h2>
@@ -49,13 +63,26 @@
         <label><input type="radio" name="gender" value="Female"> Female</label>
         <label><input type="radio" name="gender" value="Other"> Other</label>
       </div>
-
-      <input type="submit" value="Register">
-
-      
-
+      <br>
+      <input type="submit" value="Register" class="submit-btn">
+      <p>Already have an account? <a href="login.html">Login</a></p>
     </form>
   </div>
+  
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Financial Inventory. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+  </footer>
+  
   <script src="register.js"></script>
 
 </body>
