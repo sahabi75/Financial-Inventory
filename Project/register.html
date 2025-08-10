@@ -9,12 +9,12 @@
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo"><h2>Financial Inventory</h2></div>
+      <div class="logo"><h2><i class="fas fa-chart-line"></i> Financial Inventory</h2></div>
       <ul class="nav-link">
         <li><a href="index.html">Home</a></li>
         <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="programs.html">Programs</a></li>
-        <li><a href="about_us.html">About us</a></li>
+        <li><a href="about_us.html">About Us</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="login.html">Login</a></li>
       </ul>      
@@ -84,6 +84,14 @@
   </footer>
   
   <script src="register.js"></script>
+  <script>
+    (function(){
+      const current = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.nav-link a').forEach(a=>{
+        if(a.getAttribute('href')===current){ a.classList.add('active'); }
+      });
+    })();
+  </script>
 
 </body>
 </html>

@@ -4,38 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Financial Inventory</title>
+    <link rel="stylesheet" href="about_us.css">
     <link rel="stylesheet" href="login.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo"><h2>Financial Inventory</h2></div>
+            <div class="logo"><h2><i class="fas fa-chart-line"></i> Financial Inventory</h2></div>
             <ul class="nav-link">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
                 <li><a href="programs.html">Programs</a></li>
-                <li><a href="about_us.html">About us</a></li>
+                <li><a href="about_us.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html" class="active">Login</a></li>
+                <li><a href="login.html">Login</a></li>
             </ul>      
         </nav>
     </header>
 
-    <div class="login-container">
-        <h2>Login to Financial Inventory</h2>
-        <form action="" autocomplete="on">
-            <label for="un">Username</label>
-            <input type="text" name="un" id="un" placeholder="Enter your user name" required>
-            <span id="test"></span>
-            <br><br>
-            <label for="pass">Password</label>
-            <input type="password" name="pass" id="pass" placeholder="Enter your password" required>
-            <br><br>
-            <button type="submit"><a href="dashboard.php">Login</a></button>
-            <p>Don't have an account? <a href="register.html">Sign up</a></p>
-        </form>
-    </div>
+    <main class="auth-wrapper">
+        <div class="login-container glass-card">
+            <h2 class="auth-title gradient-text"><i class="fas fa-lock"></i> Sign In</h2>
+            <form action="dashboard.html" autocomplete="on" class="auth-form">
+                <div class="form-field">
+                    <label for="un">Username</label>
+                    <input type="text" name="un" id="un" placeholder="Enter your username" required>
+                </div>
+                <div class="form-field">
+                    <label for="pass">Password</label>
+                    <input type="password" name="pass" id="pass" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="auth-btn">Login</button>
+                <p class="switch-link">Don't have an account? <a href="register.html">Create one</a></p>
+            </form>
+        </div>
+    </main>
     
     <footer>
         <div class="footer-content">
@@ -51,6 +55,14 @@
         </div>
     </footer>
     
-    <script src="login.js"></script>
+        <script src="login.js"></script>
+        <script>
+            (function(){
+                const current = location.pathname.split('/').pop() || 'index.html';
+                document.querySelectorAll('.nav-link a').forEach(a=>{
+                    if(a.getAttribute('href')===current){ a.classList.add('active'); }
+                });
+            })();
+        </script>
 </body>
 </html>

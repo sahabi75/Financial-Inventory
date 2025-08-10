@@ -120,38 +120,56 @@ function closeModal(modalId) {
 }
 
 
+function closeAndReset(modalId, formId) {
+  closeModal(modalId);
+  if (formId) {
+    const f = document.getElementById(formId);
+    if (f) f.reset();
+  }
+}
+
+
+
+function safeNumber(val) {
+  const n = parseFloat(val);
+  return isFinite(n) ? n : 0;
+}
+
 document.getElementById("addAccountForm").addEventListener("submit", function (e) {
   e.preventDefault();
-  const name = document.getElementById("accountName").value;
+  const name = document.getElementById("accountName").value.trim();
   const type = document.getElementById("accountType").value;
-  const balance = parseFloat(document.getElementById("accountBalance").value);
+  const balance = safeNumber(document.getElementById("accountBalance").value);
+  if (!name || !type) return; // basic guard
   addAccount(name, type, balance);
-  closeModal("addAccountModal");
+  closeAndReset("addAccountModal", "addAccountForm");
 });
 
 document.getElementById("addExpenseForm").addEventListener("submit", function (e) {
   e.preventDefault();
-  const category = document.getElementById("expenseCategory").value;
-  const amount = parseFloat(document.getElementById("expenseAmount").value);
+  const category = document.getElementById("expenseCategory").value.trim();
+  const amount = safeNumber(document.getElementById("expenseAmount").value);
+  if (!category) return;
   addExpense(category, amount);
-  closeModal("addExpenseModal");
+  closeAndReset("addExpenseModal", "addExpenseForm");
 });
 
 document.getElementById("addTransactionForm").addEventListener("submit", function (e) {
   e.preventDefault();
-  const desc = document.getElementById("transactionDesc").value;
-  const amount = parseFloat(document.getElementById("transactionAmount").value);
-  const category = document.getElementById("transactionCategory").value;
+  const desc = document.getElementById("transactionDesc").value.trim();
+  const amount = safeNumber(document.getElementById("transactionAmount").value);
+  const category = document.getElementById("transactionCategory").value.trim();
   const date = document.getElementById("transactionDate").value;
+  if (!desc || !category || !date) return;
   addTransaction(desc, amount, category, date);
-  closeModal("addTransactionModal");
+  closeAndReset("addTransactionModal", "addTransactionForm");
 });
 
 document.getElementById("setIncomeForm").addEventListener("submit", function (e) {
   e.preventDefault();
-  const amount = parseFloat(document.getElementById("monthlyIncomeAmount").value);
+  const amount = safeNumber(document.getElementById("monthlyIncomeAmount").value);
   setIncome(amount);
-  closeModal("setIncomeModal");
+  closeAndReset("setIncomeModal", "setIncomeForm");
   hideQuickStart();
 });
 
@@ -171,3 +189,21 @@ document.getElementById("toggleBalance").addEventListener("click", function () {
 
 
 updateUI();
+
+// Close on outside click
+window.addEventListener('click', (e) => {
+  if (e.target.classList && e.target.classList.contains('modal')) {
+    e.target.style.display = 'none';
+  }
+});
+
+// Escape key closes topmost open modal
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const openModals = Array.from(document.querySelectorAll('.modal'))
+      .filter(m => m.style.display === 'block');
+    if (openModals.length) {
+      openModals[openModals.length - 1].style.display = 'none';
+    }
+  }
+});

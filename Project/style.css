@@ -1,152 +1,92 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    line-height: 1.6;
-    color: #088a61;
-  }
+/* Home page specific enhancements leveraging global theme (about_us.css) */
 
-
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1b9466;
-    padding: 20px 40px;
-  }
-  .logo h2 {
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  .nav-link {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-  }
-  .nav-link li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s;
-  }
-  .nav-link li a:hover {
-    color: #18a88b;
-  }
-
-
-  .hero {
-    position: relative;
-    width: 100%;
-    max-height: 500px;
-    overflow: hidden;
-  }
-  .hero img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    background-color: #12856599;
-    padding: 30px;
-    text-align: center;
-    border-radius: 10px;
-  }
-  .text h1 {
-    font-size: 42px;
-    margin-bottom: 10px;
-  }
-  .text p {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  .text button {
-    background-color: #1ba877;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-  }
-  .text button:hover {
-    background-color: #1ba081;
-    transform: scale(1.05);
-  }
-  .Description {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: blanchedalmond;
-    border-radius: 10px;
-    margin: 20px auto;
-    max-width: 800px;
-  }
-    .Description h2 {
-        font-size: 36px;
-        margin-bottom: 20px;
-    }
-    .Description p {
-        font-size: 20px;
-        line-height: 1.6;
-        margin-bottom: 20px;
-    }
-.card {
-    background-color: rgb(33, 156, 130);
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 300px;
-    margin: 20px auto;
+.hero-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
+  gap: 3rem;
+  align-items: center;
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 2rem auto 0 auto;
 }
 
-
-footer {
-  background-color: #2c3e50; 
-  padding: 20px 0;
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 14px;
+.hero-media {
+  position: relative;
 }
 
-.footer-content {
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
+.hero-image {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
 }
 
-.footer-content p {
-  margin-bottom: 10px;
+.hero-text h1, .hero-text .gradient-text {
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  line-height: 1.15;
+  margin-bottom: 1rem;
 }
 
-.footer-links {
+.hero-text p {
+  font-size: 1.05rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg,#1abc9c,#16a085);
+  color: #fff;
+  padding: 0.9rem 2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 25px -8px rgba(26,188,156,0.55);
+  transition: all .3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px -10px rgba(26,188,156,0.55);
+}
+
+.intro { margin-top: 0; }
+
+.services .features-list {
   list-style: none;
   padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  margin-top: 1.5rem;
+}
+
+.features-list li {
+  background: linear-gradient(135deg,#ffffff 0%, #f8f9fa 100%);
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem;
+  font-weight: 500;
+  border: 1px solid rgba(26,188,156,0.2);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+  transition: .3s ease;
 }
 
-.footer-links li {
-  display: inline;
+.features-list li i { color: #1abc9c; font-size: 1.1rem; }
+
+.features-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  border-color: #1abc9c;
 }
 
-.footer-links a {
-  color: #ecf0f1;
-  text-decoration: none;
-  transition: color 0.3s ease;
+@media (max-width: 768px) {
+  .hero-section { padding: 2.5rem 1.5rem; }
 }
 
-.footer-links a:hover {
-  color: #f1c40f; 
+@media (max-width: 520px) {
+  .hero-section { grid-template-columns: 1fr; }
 }
 

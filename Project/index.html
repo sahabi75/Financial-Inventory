@@ -3,61 +3,81 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Financial Inventory</title>
-        <link rel="stylesheet" href="style.css">
+    <title>Financial Inventory</title>
+    <!-- Global themed styles -->
+    <link rel="stylesheet" href="about_us.css">
+    <!-- Home page specific styles -->
+    <link rel="stylesheet" href="style.css">
         
     </head>
     <body>
         <header>
             <nav class="navbar">
-                <div class="logo"><h2>Financial Inventory</h2></div>
+                <div class="logo"><h2><i class="fas fa-chart-line"></i> Financial Inventory</h2></div>
                 <ul class="nav-link">
-                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
                     <li><a href="programs.html">Programs</a></li>
-                    <li><a href="about_us.html">About US</a></li>
+                    <li><a href="about_us.html">About Us</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="login.html">Login</a></li>
                 </ul>
             </nav>
-
-            <div class="hero">
-                <img src="m1.jpg" alt="Money Image">
-                <div class="text">
-                    <h1>How you will spend your money</h1>
-                    <p>Track your daily spending mooney here</p>
-                    <a href="login.html"><button>Join Us</button></a>
-                </div>
-            </div>
-
-            <div class="Description">
-                <h2>Welcome to Financial Inventory</h2>
-                <p>Financial Inventory is a platform designed to help you manage your finances effectively. Whether you're looking to track your expenses, set budgets, or plan for future investments, we've got you covered.</p>
-                <p>Join us today and take control of your financial future!</p>
-            </div>
-
-            <div class="card">
-                <h2>Our Services</h2>
-                <p>We offer a range of services to help you manage your money better:</p>
-                <ul>
-                    <li>Expense Tracking</li>
-                    <li>Budget Planning</li>
-                    <li>Financial Advice</li>
-                    <li>Investment Guidance</li>
-            </div>
-            <footer>
-                <div class="footer-content">
-                    <p>&copy; 2025 Financial Inventory. All rights reserved.</p>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="programs.html">Programs</a></li>
-                        <li><a href="about_us.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="login.html">Login</a></li>
-                    </ul>
-                </div>
-            </footer>
         </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section class="hero-section glass">
+                <div class="hero-media">
+                    <img src="m1.jpg" alt="Financial visualization" class="hero-image" />
+                </div>
+                <div class="hero-text">
+                    <h1 class="gradient-text">Manage & Grow Your Money Wisely</h1>
+                    <p>Track expenses, plan budgets, and visualize your financial health in one intuitive dashboard.</p>
+                    <a href="login.html" class="cta-btn">Get Started</a>
+                </div>
+            </section>
+
+            <!-- Intro Section -->
+            <section class="about-section intro">
+                <h2>Welcome to Financial Inventory</h2>
+                <p>Financial Inventory helps you take control of your personal finances with clarity and confidence. Log your income, categorize expenses, and monitor savings progress effortlessly.</p>
+                <p>Built for students, professionals, and anyone aiming for smarter money decisions.</p>
+            </section>
+
+            <!-- Services -->
+            <section class="about-section services">
+                <h2>What You Can Do</h2>
+                <p>Everything you need to build healthy financial habits:</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-wallet"></i> Expense Tracking</li>
+                    <li><i class="fas fa-chart-pie"></i> Budget Planning</li>
+                    <li><i class="fas fa-lightbulb"></i> Financial Insights</li>
+                    <li><i class="fas fa-chart-line"></i> Investment Awareness</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 Financial Inventory. All rights reserved.</p>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="about_us.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+                </footer>
+                <script>
+                    (function(){
+                        const current = location.pathname.split('/').pop() || 'index.html';
+                        document.querySelectorAll('.nav-link a').forEach(a=>{
+                            if(a.getAttribute('href')===current){ a.classList.add('active'); }
+                        });
+                    })();
+                </script>
     </body>
 </html>
