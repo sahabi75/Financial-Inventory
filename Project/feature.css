@@ -1,0 +1,9 @@
+/* Shared feature pages styling */
+.feature-wrapper h1 { font-size:2.2rem; margin-bottom:1rem; display:flex; gap:.6rem; align-items:center; }
+.feature-section { margin-top:2rem; }
+.steps, .metrics, .concepts { list-style: none; padding:0; display:grid; gap:.65rem; }
+.steps li, .metrics li, .concepts li { background:rgba(255,255,255,0.9); padding:.85rem 1rem; border-radius:12px; border:1px solid rgba(255,255,255,0.4); box-shadow:0 4px 15px rgba(0,0,0,0.05); }
+.placeholder { background:linear-gradient(135deg,#f8fafc,#eef2ff); border:2px dashed #cbd5e1; border-radius:14px; height:240px; display:flex; align-items:center; justify-content:center; color:#64748b; font-weight:500; }
+.feature-link { color:inherit; text-decoration:none; display:inline-flex; align-items:center; gap:.55rem; }
+.feature-link i { color:#1abc9c; }
+.feature-link:hover { color:#1abc9c; }
