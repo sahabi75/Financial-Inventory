@@ -32,6 +32,9 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     background: transparent;
 }
+/* Unified logo alignment */
+.navbar .logo h2 { display:flex; align-items:center; gap:.55rem; }
+.navbar .logo h2 i { font-size:1.3rem; line-height:1; }
 
 .navbar .nav-link {
     list-style: none;
