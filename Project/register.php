@@ -1,44 +1,40 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    $fname = htmlspecialchars(trim($_POST["fname"]));
-    $lname = htmlspecialchars(trim($_POST["lname"]));
-    $username = htmlspecialchars(trim($_POST["un"]));
-    $email = htmlspecialchars(trim($_POST["email"]));
-    $password = htmlspecialchars(trim($_POST["pass"]));
-    $phone = htmlspecialchars(trim($_POST["phone"]));
-    $gender = htmlspecialchars(trim($_POST["gender"]));
-
-    
-    $host = "localhost";
-    $dbname = "register_db";  
-    $user = "root";
-    $pass = "";
-
-    
-    $conn = new mysqli($host, $user, $pass, $dbname);
-
-    
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    
-    $stmt = $conn->prepare("INSERT INTO users (fname, lname, username, email, password, phone, gender) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssss", $fname, $lname, $username, $email, $hashedPassword, $phone, $gender);
-
-    if ($stmt->execute()) {
-        echo "<h3>Registration successful!</h3>";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conn->close();
-} else {
-    echo "Invalid Request";
+require __DIR__ . '/db.php';
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    exit('Method Not Allowed');
 }
+
+$fname  = trim($_POST['fname'] ?? '');
+$lname  = trim($_POST['lname'] ?? '');
+$un     = trim($_POST['un'] ?? '');
+$email  = trim($_POST['email'] ?? '');
+$pass   = $_POST['pass'] ?? '';
+$phone  = trim($_POST['phone'] ?? '');
+$age    = trim($_POST['age'] ?? '');
+$gender = $_POST['gender'] ?? null;
+
+if ($un === '' || $email === '' || $pass === '') {
+    header('Location: register.html?error=missing');
+    exit;
+}
+
+$hash = password_hash($pass, PASSWORD_DEFAULT);
+
+$sql = "INSERT INTO users (fname, lname, username, email, password_hash, phone, age, gender) 
+        VALUES (?,?,?,?,?,?,?,?)";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, 'ssssssis', $fname, $lname, $un, $email, $hash, $phone, $age, $gender);
+
+if (!mysqli_stmt_execute($stmt)) {
+    if (mysqli_errno($conn) == 1062) {
+        header('Location: register.html?error=duplicate');
+        exit;
+    }
+    header('Location: register.html?error=server');
+    exit;
+}
+
+header('Location: login.html?registered=1');
+exit;
 ?>
