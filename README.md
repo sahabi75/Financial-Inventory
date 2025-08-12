@@ -17,24 +17,30 @@ Financial Inventory is a comprehensive web-based financial management platform b
 - **Expense categorization** - Organize expenses by categories
 - **Real-time spending alerts** - Get notified when approaching budget limits
 - **Visual spending reports** - Interactive charts and graphs
+- **Budget comparison** - Compare planned vs. actual spending
+- **Transaction history** - Searchable record of all financial transactions
 
-### 📈 Investment Planner
-- **Portfolio analysis** - Track and analyze investment performance
-- **Risk assessment** - Evaluate investment risks
-- **Goal-based investing** - Set and track investment goals
-- **Performance tracking** - Monitor returns and growth
+### 📈 Investment Awareness & Tools
+- **Investment concepts** - Learn basic investment principles
+- **Portfolio allocation** - Visualize asset allocation with interactive pie charts
+- **Risk assessment** - Evaluate your investment risk profile
+- **Investment strategies** - Explore different strategies based on risk tolerance
+- **Investment calculator** - Project growth with compound interest calculations
+- **Market data** - Track major indices and assets in real-time
+- **Investment news** - Stay updated with latest financial news and articles
 
-### 🎯 Savings Goals
-- **Goal setting & tracking** - Define and monitor savings objectives
-- **Automated savings plans** - Set up automatic transfers
-- **Progress visualization** - Visual progress indicators
-- **Achievement rewards** - Celebrate milestone achievements
+### 🎯 Financial Insights
+- **Key metrics dashboard** - View your important financial indicators
+- **Spending trends** - Track how your spending changes over time
+- **Expense breakdown** - See where your money is going with interactive charts
+- **Financial goals** - Set, track, and manage savings goals
+- **Progress visualization** - Visual indicators of progress towards goals
 
 ### 📚 Financial Education
-- **Interactive courses** - Learn financial concepts through engaging content
+- **Interactive learning** - Learn financial concepts through engaging content
 - **Financial calculators** - Tools for loan, investment, and savings calculations
 - **Expert guidance** - Access to financial advice and tips
-- **Certification programs** - Earn certificates for completed courses
+- **Educational resources** - Articles and guides on financial literacy
 
 ## 🚀 Technologies Used
 
@@ -64,18 +70,22 @@ Financial-Inventory/
 │   ├── contact.html        # Contact information
 │   ├── login.html          # User login
 │   ├── register.html       # User registration
-│   ├── dashboard.html      # User dashboard
+│   ├── dashboard.php       # User dashboard (PHP)
+│   ├── investment.html     # Investment awareness & tools
+│   ├── insights.html       # Financial insights & analytics
+│   ├── budget.html         # Budget planning tools
 │   ├── style.css           # Main stylesheet
 │   ├── about_us.css        # About page styles
 │   ├── programs.css        # Programs page styles
 │   ├── contact.css         # Contact page styles
 │   ├── login.css           # Login page styles
 │   ├── register.css        # Registration styles
-│   ├── dashboard.css       # Dashboard styles
-│   ├── *.js               # JavaScript files
-│   ├── *.jpg              # Image assets
-│   └── register.php       # PHP backend for registration
-└── README.md              # Project documentation
+│   ├── feature.css         # Feature pages styles
+│   ├── feature-extensions.css # Enhanced features styles
+│   ├── *.js                # JavaScript files
+│   ├── *.jpg               # Image assets
+│   └── register.php        # PHP backend for registration
+└── README.md               # Project documentation
 ```
 
 ## 🛠️ Installation & Setup
