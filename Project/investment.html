@@ -6,7 +6,9 @@
   <title>Investment Awareness - Financial Inventory</title>
   <link rel="stylesheet" href="about_us.css">
   <link rel="stylesheet" href="feature.css">
+  <link rel="stylesheet" href="feature-extensions.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <header>
@@ -28,18 +30,239 @@
   <section class="feature-section">
     <h2>Concepts</h2>
     <ul class="concepts">
-      <li>Risk vs Return</li>
-      <li>Diversification</li>
-      <li>Compound Growth</li>
-      <li>Time Horizon</li>
+      <li><i class="fas fa-balance-scale"></i> Risk vs Return - Higher potential returns typically come with higher risk</li>
+      <li><i class="fas fa-layer-group"></i> Diversification - Spreading investments across different assets to reduce risk</li>
+      <li><i class="fas fa-chart-line"></i> Compound Growth - Earnings on both principal and accumulated interest</li>
+      <li><i class="fas fa-clock"></i> Time Horizon - Longer investment periods can help manage volatility</li>
+      <li><i class="fas fa-percentage"></i> Dollar-Cost Averaging - Investing fixed amounts at regular intervals</li>
     </ul>
   </section>
   <section class="feature-section">
-    <h2>Allocation Placeholder</h2>
-    <div class="placeholder">Pie chart placeholder</div>
+    <h2>Investment Allocation</h2>
+    <div class="chart-container">
+      <canvas id="allocationChart"></canvas>
+    </div>
+    <div class="allocation-grid">
+      <div class="allocation-item">
+        <div class="allocation-percentage">40%</div>
+        <div class="allocation-label">Stocks</div>
+      </div>
+      <div class="allocation-item">
+        <div class="allocation-percentage">30%</div>
+        <div class="allocation-label">Bonds</div>
+      </div>
+      <div class="allocation-item">
+        <div class="allocation-percentage">15%</div>
+        <div class="allocation-label">Real Estate</div>
+      </div>
+      <div class="allocation-item">
+        <div class="allocation-percentage">10%</div>
+        <div class="allocation-label">Cash</div>
+      </div>
+      <div class="allocation-item">
+        <div class="allocation-percentage">5%</div>
+        <div class="allocation-label">Alternative</div>
+      </div>
+    </div>
   </section>
-</main>
-<footer>
+  
+  <section class="feature-section">
+    <h2>Risk Assessment</h2>
+    <p>Your investment profile is considered <strong>Moderate</strong>.</p>
+    <div class="risk-meter">
+      <div class="risk-indicator" style="left: 45%;"></div>
+    </div>
+    <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+      <span>Conservative</span>
+      <span>Moderate</span>
+      <span>Aggressive</span>
+    </div>
+  </section>
+  
+  <section class="feature-section">
+    <h2>Investment Strategies</h2>
+    <div class="strategy-cards">
+      <div class="strategy-card">
+        <h3><i class="fas fa-shield-alt"></i> Conservative</h3>
+        <p>Focus on capital preservation with steady, modest returns.</p>
+        <ul>
+          <li>Primarily bonds and fixed income</li>
+          <li>Lower volatility</li>
+          <li>Suitable for short time horizons</li>
+        </ul>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value">3-5%</div>
+            <div class="stat-label">Expected Return</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">Low</div>
+            <div class="stat-label">Risk Level</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="strategy-card">
+        <h3><i class="fas fa-balance-scale"></i> Balanced</h3>
+        <p>Equal focus on growth and income generation.</p>
+        <ul>
+          <li>Mix of stocks and bonds</li>
+          <li>Moderate volatility</li>
+          <li>Suitable for medium time horizons</li>
+        </ul>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value">5-8%</div>
+            <div class="stat-label">Expected Return</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">Medium</div>
+            <div class="stat-label">Risk Level</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="strategy-card">
+        <h3><i class="fas fa-rocket"></i> Growth</h3>
+        <p>Focus on capital appreciation over the long term.</p>
+        <ul>
+          <li>Primarily stocks and equities</li>
+          <li>Higher volatility</li>
+          <li>Suitable for long time horizons</li>
+        </ul>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value">8-12%</div>
+            <div class="stat-label">Expected Return</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">High</div>
+            <div class="stat-label">Risk Level</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="feature-section">
+    <h2>Investment Calculator</h2>
+    <div class="calculator">
+      <form class="calculator-form" id="investmentCalculator">
+        <div>
+          <label for="initialInvestment">Initial Investment ($)</label>
+          <input type="number" id="initialInvestment" value="1000" min="0">
+        </div>
+        <div>
+          <label for="monthlyContribution">Monthly Contribution ($)</label>
+          <input type="number" id="monthlyContribution" value="100" min="0">
+        </div>
+        <div>
+          <label for="annualReturn">Annual Return (%)</label>
+          <input type="number" id="annualReturn" value="7" min="0" max="30" step="0.1">
+        </div>
+        <div>
+          <label for="investmentPeriod">Investment Period (Years)</label>
+          <input type="number" id="investmentPeriod" value="10" min="1" max="50">
+        </div>
+        <button type="button" id="calculateBtn">Calculate</button>
+      </form>
+      <div class="calculator-results" id="calculatorResults">
+        <h3>Results</h3>
+        <p>Total Contributions: <span id="totalContributions">$0</span></p>
+        <p>Investment Growth: <span id="investmentGrowth">$0</span></p>
+        <p>Final Balance: <span id="finalBalance">$0</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature-section">
+    <h2>Market Data</h2>
+    <div class="market-data">
+      <div class="market-header">
+        <h3>Stock Market Overview</h3>
+        <button class="market-refresh" onclick="refreshMarketData()">
+          <i class="fas fa-sync-alt"></i> Refresh
+        </button>
+      </div>
+      <table class="market-table">
+        <thead>
+          <tr>
+            <th>Index/Asset</th>
+            <th>Price</th>
+            <th>Change</th>
+            <th>% Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>S&P 500</td>
+            <td>4,815.32</td>
+            <td class="price-up">+12.45</td>
+            <td class="price-up">+0.26%</td>
+          </tr>
+          <tr>
+            <td>Dow Jones</td>
+            <td>38,654.23</td>
+            <td class="price-up">+45.67</td>
+            <td class="price-up">+0.12%</td>
+          </tr>
+          <tr>
+            <td>NASDAQ</td>
+            <td>15,987.65</td>
+            <td class="price-down">-23.45</td>
+            <td class="price-down">-0.15%</td>
+          </tr>
+          <tr>
+            <td>Bitcoin</td>
+            <td>72,345.78</td>
+            <td class="price-up">+1432.65</td>
+            <td class="price-up">+2.02%</td>
+          </tr>
+          <tr>
+            <td>Gold</td>
+            <td>2,354.60</td>
+            <td class="price-up">+5.80</td>
+            <td class="price-up">+0.25%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
+  <section class="feature-section">
+    <h2>Investment News & Articles</h2>
+    <div class="article-cards">
+      <div class="article-card">
+        <div class="article-image" style="background-image: url('https://via.placeholder.com/500x300/3498db/ffffff?text=Investment+News');"></div>
+        <div class="article-content">
+          <div class="article-date">August 10, 2025</div>
+          <div class="article-title">Understanding Market Volatility in the Current Economic Climate</div>
+          <div class="article-preview">Market volatility has increased in recent months as economic indicators provide mixed signals about the direction of the global economy...</div>
+          <a href="#" class="article-link" onclick="readArticle(1)">Read More</a>
+        </div>
+      </div>
+      
+      <div class="article-card">
+        <div class="article-image" style="background-image: url('https://via.placeholder.com/500x300/e74c3c/ffffff?text=Retirement');"></div>
+        <div class="article-content">
+          <div class="article-date">August 5, 2025</div>
+          <div class="article-title">5 Retirement Planning Strategies You Should Consider Today</div>
+          <div class="article-preview">Planning for retirement requires a strategic approach that balances growth, income, and risk management across different life stages...</div>
+          <a href="#" class="article-link" onclick="readArticle(2)">Read More</a>
+        </div>
+      </div>
+      
+      <div class="article-card">
+        <div class="article-image" style="background-image: url('https://via.placeholder.com/500x300/2ecc71/ffffff?text=ESG+Investing');"></div>
+        <div class="article-content">
+          <div class="article-date">July 28, 2025</div>
+          <div class="article-title">The Rise of ESG Investing: Balancing Profit and Purpose</div>
+          <div class="article-preview">Environmental, Social, and Governance (ESG) investing continues to gain momentum as investors seek to align their portfolios with their values...</div>
+          <a href="#" class="article-link" onclick="readArticle(3)">Read More</a>
+        </div>
+      </div>
+    </div>
+  </section>
   <div class="footer-content">
     <p>&copy; 2025 Financial Inventory. All rights reserved.</p>
     <ul class="footer-links">
@@ -53,5 +276,74 @@
   </div>
 </footer>
 <script>(function(){const c=location.pathname.split('/').pop();document.querySelectorAll('.nav-link a').forEach(a=>{if(a.getAttribute('href')===c)a.classList.add('active');});})();</script>
+
+<script>
+  // Functions for market data and articles
+  function refreshMarketData() {
+    alert('Refreshing market data...');
+    // In a real application, this would make an API call to get the latest market data
+  }
+  
+  function readArticle(articleId) {
+    alert('Opening article #' + articleId);
+    // In a real application, this would open the full article content or redirect to the article page
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    // Allocation Chart
+    const allocationCtx = document.getElementById('allocationChart').getContext('2d');
+    const allocationChart = new Chart(allocationCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Stocks', 'Bonds', 'Real Estate', 'Cash', 'Alternative'],
+        datasets: [{
+          data: [40, 30, 15, 10, 5],
+          backgroundColor: [
+            '#4CAF50', '#2196F3', '#FF9800', '#9C27B0', '#F44336'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'right'
+          }
+        }
+      }
+    });
+    
+    // Investment Calculator
+    const calculateBtn = document.getElementById('calculateBtn');
+    const calculatorResults = document.getElementById('calculatorResults');
+    
+    calculateBtn.addEventListener('click', function() {
+      const initialInvestment = parseFloat(document.getElementById('initialInvestment').value);
+      const monthlyContribution = parseFloat(document.getElementById('monthlyContribution').value);
+      const annualReturn = parseFloat(document.getElementById('annualReturn').value) / 100;
+      const investmentPeriod = parseInt(document.getElementById('investmentPeriod').value);
+      
+      // Calculate compound interest with monthly contributions
+      const monthlyRate = annualReturn / 12;
+      const totalMonths = investmentPeriod * 12;
+      
+      let futureValue = initialInvestment;
+      for (let i = 0; i < totalMonths; i++) {
+        futureValue = futureValue * (1 + monthlyRate) + monthlyContribution;
+      }
+      
+      const totalContributions = initialInvestment + (monthlyContribution * totalMonths);
+      const investmentGrowth = futureValue - totalContributions;
+      
+      // Display results
+      document.getElementById('totalContributions').textContent = '$' + totalContributions.toFixed(2);
+      document.getElementById('investmentGrowth').textContent = '$' + investmentGrowth.toFixed(2);
+      document.getElementById('finalBalance').textContent = '$' + futureValue.toFixed(2);
+      
+      calculatorResults.classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>

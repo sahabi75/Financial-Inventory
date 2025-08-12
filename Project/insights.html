@@ -6,7 +6,9 @@
   <title>Financial Insights - Financial Inventory</title>
   <link rel="stylesheet" href="about_us.css">
   <link rel="stylesheet" href="feature.css">
+  <link rel="stylesheet" href="feature-extensions.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <header>
@@ -28,14 +30,203 @@
   <section class="feature-section">
     <h2>Key Metrics</h2>
     <ul class="metrics">
-      <li><span class="metric-label">Savings Rate:</span> <span class="metric-value placeholder">--%</span></li>
-      <li><span class="metric-label">Top Category:</span> <span class="metric-value placeholder">--</span></li>
-      <li><span class="metric-label">Average Daily Spend:</span> <span class="metric-value placeholder">--</span></li>
+      <li><span class="metric-label">Savings Rate:</span> <span class="metric-value">24%</span></li>
+      <li><span class="metric-label">Top Category:</span> <span class="metric-value">Housing</span></li>
+      <li><span class="metric-label">Average Daily Spend:</span> <span class="metric-value">$42.75</span></li>
+      <li><span class="metric-label">Monthly Income:</span> <span class="metric-value">$4,850</span></li>
+      <li><span class="metric-label">Total Savings:</span> <span class="metric-value">$12,630</span></li>
     </ul>
   </section>
   <section class="feature-section">
     <h2>Spending Trend</h2>
-    <div class="placeholder">Line chart placeholder</div>
+    <div class="chart-container">
+      <canvas id="spendingTrendChart"></canvas>
+    </div>
+    <div class="chart-legend">
+      <div class="legend-item"><span class="legend-color" style="background-color: #4CAF50;"></span>Income</div>
+      <div class="legend-item"><span class="legend-color" style="background-color: #F44336;"></span>Expenses</div>
+      <div class="legend-item"><span class="legend-color" style="background-color: #2196F3;"></span>Savings</div>
+    </div>
+  </section>
+  
+  <section class="feature-section">
+    <h2>Expense Breakdown</h2>
+    <div class="chart-container">
+      <canvas id="expenseBreakdownChart"></canvas>
+    </div>
+  </section>
+  
+  <section class="feature-section">
+    <h2>Financial Goals</h2>
+    <div class="goals-container">
+      <div class="goal-item">
+        <h3>Emergency Fund</h3>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 75%;">75%</div>
+        </div>
+        <p>$7,500 of $10,000 saved</p>
+        <div class="goal-actions">
+          <button class="goal-btn" onclick="addFunds('emergency', 100)">Add $100</button>
+          <button class="goal-btn" onclick="editGoal('emergency')">Edit Goal</button>
+        </div>
+      </div>
+      <div class="goal-item">
+        <h3>Vacation</h3>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 40%;">40%</div>
+        </div>
+        <p>$1,200 of $3,000 saved</p>
+        <div class="goal-actions">
+          <button class="goal-btn" onclick="addFunds('vacation', 100)">Add $100</button>
+          <button class="goal-btn" onclick="editGoal('vacation')">Edit Goal</button>
+        </div>
+      </div>
+      <div class="goal-item">
+        <h3>New Car</h3>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 25%;">25%</div>
+        </div>
+        <p>$5,000 of $20,000 saved</p>
+        <div class="goal-actions">
+          <button class="goal-btn" onclick="addFunds('car', 100)">Add $100</button>
+          <button class="goal-btn" onclick="editGoal('car')">Edit Goal</button>
+        </div>
+      </div>
+      <div class="goal-item add-goal">
+        <h3><i class="fas fa-plus-circle"></i> Add New Goal</h3>
+        <p>Create a new financial goal to track your progress.</p>
+        <button class="goal-btn" onclick="createNewGoal()">Create Goal</button>
+      </div>
+    </div>
+  <section class="feature-section">
+    <h2>Budget Analysis</h2>
+    <div class="budget-analysis">
+      <div class="budget-filter">
+        <label for="budget-month">Select Month:</label>
+        <select id="budget-month" onchange="updateBudgetAnalysis()">
+          <option value="current">Current Month</option>
+          <option value="previous">Previous Month</option>
+          <option value="twoMonths">Two Months Ago</option>
+        </select>
+      </div>
+      
+      <div class="budget-comparison">
+        <div class="budget-category">
+          <h3>Housing</h3>
+          <div class="budget-bars">
+            <div class="budget-planned">
+              <div class="budget-label">Planned: $1,500</div>
+              <div class="budget-bar" style="width: 100%;"></div>
+            </div>
+            <div class="budget-actual">
+              <div class="budget-label">Actual: $1,450</div>
+              <div class="budget-bar" style="width: 97%;"></div>
+            </div>
+          </div>
+          <div class="budget-status positive">Under budget by $50</div>
+        </div>
+        
+        <div class="budget-category">
+          <h3>Food</h3>
+          <div class="budget-bars">
+            <div class="budget-planned">
+              <div class="budget-label">Planned: $600</div>
+              <div class="budget-bar" style="width: 100%;"></div>
+            </div>
+            <div class="budget-actual">
+              <div class="budget-label">Actual: $720</div>
+              <div class="budget-bar over-budget" style="width: 120%;"></div>
+            </div>
+          </div>
+          <div class="budget-status negative">Over budget by $120</div>
+        </div>
+        
+        <div class="budget-category">
+          <h3>Transportation</h3>
+          <div class="budget-bars">
+            <div class="budget-planned">
+              <div class="budget-label">Planned: $400</div>
+              <div class="budget-bar" style="width: 100%;"></div>
+            </div>
+            <div class="budget-actual">
+              <div class="budget-label">Actual: $380</div>
+              <div class="budget-bar" style="width: 95%;"></div>
+            </div>
+          </div>
+          <div class="budget-status positive">Under budget by $20</div>
+        </div>
+      </div>
+      
+      <button class="budget-adjust-btn" onclick="adjustBudget()">Adjust Budget Categories</button>
+    </div>
+  </section>
+  
+  <section class="feature-section">
+    <h2>Transaction History</h2>
+    <div class="transaction-search">
+      <input type="text" id="transaction-search" placeholder="Search transactions..." onkeyup="searchTransactions()">
+      <select id="transaction-filter">
+        <option value="all">All Categories</option>
+        <option value="housing">Housing</option>
+        <option value="food">Food</option>
+        <option value="transport">Transportation</option>
+        <option value="utilities">Utilities</option>
+        <option value="entertainment">Entertainment</option>
+      </select>
+    </div>
+    
+    <div class="transaction-list">
+      <div class="transaction-item" data-category="food">
+        <div class="transaction-date">Aug 12, 2025</div>
+        <div class="transaction-info">
+          <div class="transaction-merchant">Grocery Store</div>
+          <div class="transaction-category">Food</div>
+        </div>
+        <div class="transaction-amount expense">-$85.43</div>
+      </div>
+      
+      <div class="transaction-item" data-category="utilities">
+        <div class="transaction-date">Aug 10, 2025</div>
+        <div class="transaction-info">
+          <div class="transaction-merchant">Electric Company</div>
+          <div class="transaction-category">Utilities</div>
+        </div>
+        <div class="transaction-amount expense">-$124.56</div>
+      </div>
+      
+      <div class="transaction-item" data-category="income">
+        <div class="transaction-date">Aug 1, 2025</div>
+        <div class="transaction-info">
+          <div class="transaction-merchant">Employer Inc.</div>
+          <div class="transaction-category">Income</div>
+        </div>
+        <div class="transaction-amount income">+$2,425.00</div>
+      </div>
+      
+      <div class="transaction-item" data-category="transport">
+        <div class="transaction-date">Jul 28, 2025</div>
+        <div class="transaction-info">
+          <div class="transaction-merchant">Gas Station</div>
+          <div class="transaction-category">Transportation</div>
+        </div>
+        <div class="transaction-amount expense">-$48.32</div>
+      </div>
+      
+      <div class="transaction-item" data-category="entertainment">
+        <div class="transaction-date">Jul 25, 2025</div>
+        <div class="transaction-info">
+          <div class="transaction-merchant">Movie Theater</div>
+          <div class="transaction-category">Entertainment</div>
+        </div>
+        <div class="transaction-amount expense">-$32.50</div>
+      </div>
+    </div>
+    
+    <div class="transaction-pagination">
+      <button disabled>Previous</button>
+      <span>Page 1 of 4</span>
+      <button onclick="nextTransactionPage()">Next</button>
+    </div>
   </section>
 </main>
 <footer>
@@ -52,5 +243,142 @@
   </div>
 </footer>
 <script>(function(){const c=location.pathname.split('/').pop();document.querySelectorAll('.nav-link a').forEach(a=>{if(a.getAttribute('href')===c)a.classList.add('active');});})();</script>
+
+<script>
+  // Spending Trend Chart
+  document.addEventListener('DOMContentLoaded', function() {
+    const spendingCtx = document.getElementById('spendingTrendChart').getContext('2d');
+    const spendingChart = new Chart(spendingCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [
+          {
+            label: 'Income',
+            data: [4800, 4800, 4850, 4850, 4850, 4850],
+            borderColor: '#4CAF50',
+            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+            tension: 0.3
+          },
+          {
+            label: 'Expenses',
+            data: [3700, 3500, 3650, 3900, 3600, 3700],
+            borderColor: '#F44336',
+            backgroundColor: 'rgba(244, 67, 54, 0.1)',
+            tension: 0.3
+          },
+          {
+            label: 'Savings',
+            data: [1100, 1300, 1200, 950, 1250, 1150],
+            borderColor: '#2196F3',
+            backgroundColor: 'rgba(33, 150, 243, 0.1)',
+            tension: 0.3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                return '$' + value;
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Expense Breakdown Chart
+    const expenseCtx = document.getElementById('expenseBreakdownChart').getContext('2d');
+    const expenseChart = new Chart(expenseCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Housing', 'Food', 'Transportation', 'Utilities', 'Entertainment', 'Others'],
+        datasets: [{
+          data: [35, 20, 15, 10, 12, 8],
+          backgroundColor: [
+            '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'right'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.label + ': ' + context.parsed + '%';
+              }
+            }
+          }
+        }
+      }
+    });
+  });
+  
+  // Functions for new features
+  function searchTransactions() {
+    const searchText = document.getElementById('transaction-search').value.toLowerCase();
+    const filter = document.getElementById('transaction-filter').value;
+    const transactions = document.querySelectorAll('.transaction-item');
+    
+    transactions.forEach(transaction => {
+      const category = transaction.getAttribute('data-category');
+      const merchant = transaction.querySelector('.transaction-merchant').textContent.toLowerCase();
+      const categoryText = transaction.querySelector('.transaction-category').textContent.toLowerCase();
+      
+      const matchesSearch = merchant.includes(searchText) || categoryText.includes(searchText);
+      const matchesFilter = filter === 'all' || category === filter;
+      
+      transaction.style.display = (matchesSearch && matchesFilter) ? 'flex' : 'none';
+    });
+  }
+  
+  function nextTransactionPage() {
+    alert('Loading next page of transactions...');
+    // This would be implemented with real data in a production environment
+  }
+  
+  function updateBudgetAnalysis() {
+    const month = document.getElementById('budget-month').value;
+    alert('Loading budget data for ' + month + '...');
+    // This would update the budget data based on the selected month
+  }
+  
+  function adjustBudget() {
+    alert('Opening budget adjustment interface...');
+    // This would open a modal or form to adjust budget categories
+  }
+  
+  function addFunds(goalType, amount) {
+    alert('Adding $' + amount + ' to your ' + goalType + ' goal');
+    // In a real app, this would update the progress bar and amounts
+  }
+  
+  function editGoal(goalType) {
+    alert('Opening editor for ' + goalType + ' goal');
+    // This would open a form to edit the goal details
+  }
+  
+  function createNewGoal() {
+    alert('Opening new goal creation form');
+    // This would open a form to create a new financial goal
+  }
+</script>
 </body>
 </html>

@@ -1,0 +1,447 @@
+/* Additional Feature Styles for Financial Insights and Investment Pages */
+
+/* Budget Analysis Styles */
+.budget-filter {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.budget-filter label {
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.budget-filter select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.budget-comparison {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.budget-category {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.budget-category h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.budget-bars {
+  margin: 15px 0;
+}
+
+.budget-planned, .budget-actual {
+  margin-bottom: 10px;
+}
+
+.budget-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.budget-bar {
+  height: 20px;
+  background-color: #3498db;
+  border-radius: 10px;
+}
+
+.budget-bar.over-budget {
+  background-color: #e74c3c;
+}
+
+.budget-status {
+  text-align: right;
+  font-weight: 500;
+  padding: 5px 0;
+}
+
+.budget-status.positive {
+  color: #2ecc71;
+}
+
+.budget-status.negative {
+  color: #e74c3c;
+}
+
+.budget-adjust-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Transaction History Styles */
+.transaction-search {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.transaction-search input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.transaction-search select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 150px;
+}
+
+.transaction-list {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-item {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.transaction-date {
+  width: 100px;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.transaction-info {
+  flex-grow: 1;
+}
+
+.transaction-merchant {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.transaction-category {
+  font-size: 0.8rem;
+  color: #95a5a6;
+}
+
+.transaction-amount {
+  font-weight: bold;
+  width: 100px;
+  text-align: right;
+}
+
+.transaction-amount.income {
+  color: #2ecc71;
+}
+
+.transaction-amount.expense {
+  color: #e74c3c;
+}
+
+.transaction-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.transaction-pagination button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.transaction-pagination button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* Goal Actions */
+.goal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.goal-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.add-goal {
+  border: 2px dashed #bdc3c7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.add-goal h3 {
+  color: #7f8c8d;
+}
+
+.add-goal i {
+  margin-right: 5px;
+  color: #3498db;
+}
+
+/* Market Data Styles */
+.market-data {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.market-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.market-header h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.market-refresh {
+  background-color: transparent;
+  border: none;
+  color: #3498db;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.market-refresh i {
+  margin-right: 5px;
+}
+
+.market-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.market-table th, .market-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.market-table th {
+  font-weight: 600;
+  color: #7f8c8d;
+}
+
+.price-up {
+  color: #2ecc71;
+}
+
+.price-down {
+  color: #e74c3c;
+}
+
+/* Article Cards */
+.article-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.article-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.article-image {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+}
+
+.article-content {
+  padding: 15px;
+}
+
+.article-date {
+  font-size: 0.8rem;
+  color: #95a5a6;
+  margin-bottom: 5px;
+}
+
+.article-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.article-preview {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.article-link {
+  display: inline-block;
+  color: #3498db;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.article-link:hover {
+  text-decoration: underline;
+}
+
+/* Dialog/Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display: none;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #7f8c8d;
+}
+
+.modal-form-group {
+  margin-bottom: 15px;
+}
+
+.modal-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.modal-form-group input, .modal-form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-actions button {
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-cancel {
+  background-color: #e0e0e0;
+  border: none;
+  color: #7f8c8d;
+}
+
+.btn-submit {
+  background-color: #3498db;
+  border: none;
+  color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .budget-comparison,
+  .transaction-search,
+  .article-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .transaction-search {
+    flex-direction: column;
+  }
+  
+  .transaction-date {
+    width: 80px;
+  }
+  
+  .transaction-amount {
+    width: 80px;
+  }
+}

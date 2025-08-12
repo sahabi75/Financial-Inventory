@@ -1,0 +1,130 @@
+  <section class="feature-section">
+    <h2>Budget Analysis</h2>
+    <div class="budget-analysis">
+      <div class="budget-filter">
+        <label for="budget-month">Select Month:</label>
+        <select id="budget-month" onchange="updateBudgetAnalysis()">
+          <option value="current">Current Month</option>
+          <option value="previous">Previous Month</option>
+          <option value="twoMonths">Two Months Ago</option>
+        </select>
+      </div>
+      
+      <div class="budget-comparison">
+        <div class="budget-category">
+          <h3>Housing</h3>
+          <div class="budget-bars">
+            <div class="budget-planned">
+              <div class="budget-label">Planned: $1,500</div>
+              <div class="budget-bar" style="width: 100%;"></div>
+            </div>
+            <div class="budget-actual">
+              <div class="budget-label">Actual: $1,450</div>
+              <div class="budget-bar" style="width: 97%;"></div>
+            </div>
+          </div>
+          <div class="budget-status positive">Under budget by $50</div>
+        </div>
+        
+        <div class="budget-category">
+          <h3>Food</h3>
+          <div class="budget-bars">
+            <div class="budget-planned">
+              <div class="budget-label">Planned: $600</div>
+              <div class="budget-bar" style="width: 100%;"></div>
+            </div>
+            <div class="budget-actual">
+              <div class="budget-label">Actual: $720</div>
+              <div class="budget-bar over-budget" style="width: 120%;"></div>
+            </div>
+          </div>
+          <div class="budget-status negative">Over budget by $120</div>
+        </div>
+        
+        <div class="budget-category">
+          <h3>Transportation</h3>
+          <div class="budget-bars">
+            <div class="budget-planned">
+              <div class="budget-label">Planned: $400</div>
+              <div class="budget-bar" style="width: 100%;"></div>
+            </div>
+            <div class="budget-actual">
+              <div class="budget-label">Actual: $380</div>
+              <div class="budget-bar" style="width: 95%;"></div>
+            </div>
+          </div>
+          <div class="budget-status positive">Under budget by $20</div>
+        </div>
+      </div>
+      
+      <button class="budget-adjust-btn" onclick="adjustBudget()">Adjust Budget Categories</button>
+    </div>
+  </section>
+  
+  <section class="feature-section">
+    <h2>Transaction History</h2>
+    <div class="transaction-search">
+      <input type="text" id="transaction-search" placeholder="Search transactions..." onkeyup="searchTransactions()">
+      <select id="transaction-filter">
+        <option value="all">All Categories</option>
+        <option value="housing">Housing</option>
+        <option value="food">Food</option>
+        <option value="transport">Transportation</option>
+        <option value="utilities">Utilities</option>
+        <option value="entertainment">Entertainment</option>
+      </select>
+    </div>
+    
+    <div class="transaction-list">
+      <div class="transaction-item" data-category="food">
+        <div class="transaction-date">Aug 12, 2025</div>
+        <div class="transaction-info">
+          <div class="transaction-merchant">Grocery Store</div>
+          <div class="transaction-category">Food</div>
+        </div>
+        <div class="transaction-amount expense">-$85.43</div>
+      </div>
+      
+      <div class="transaction-item" data-category="utilities">
+        <div class="transaction-date">Aug 10, 2025</div>
+        <div class="transaction-info">
+          <div class="transaction-merchant">Electric Company</div>
+          <div class="transaction-category">Utilities</div>
+        </div>
+        <div class="transaction-amount expense">-$124.56</div>
+      </div>
+      
+      <div class="transaction-item" data-category="income">
+        <div class="transaction-date">Aug 1, 2025</div>
+        <div class="transaction-info">
+          <div class="transaction-merchant">Employer Inc.</div>
+          <div class="transaction-category">Income</div>
+        </div>
+        <div class="transaction-amount income">+$2,425.00</div>
+      </div>
+      
+      <div class="transaction-item" data-category="transport">
+        <div class="transaction-date">Jul 28, 2025</div>
+        <div class="transaction-info">
+          <div class="transaction-merchant">Gas Station</div>
+          <div class="transaction-category">Transportation</div>
+        </div>
+        <div class="transaction-amount expense">-$48.32</div>
+      </div>
+      
+      <div class="transaction-item" data-category="entertainment">
+        <div class="transaction-date">Jul 25, 2025</div>
+        <div class="transaction-info">
+          <div class="transaction-merchant">Movie Theater</div>
+          <div class="transaction-category">Entertainment</div>
+        </div>
+        <div class="transaction-amount expense">-$32.50</div>
+      </div>
+    </div>
+    
+    <div class="transaction-pagination">
+      <button disabled>Previous</button>
+      <span>Page 1 of 4</span>
+      <button onclick="nextTransactionPage()">Next</button>
+    </div>
+  </section>
