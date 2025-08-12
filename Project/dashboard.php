@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+require __DIR__ . '/db.php';
 if (!isset($_SESSION['user_id'])) { header('Location: login.html'); exit; }
 $user_id = (int)$_SESSION['user_id'];
 
@@ -8,18 +8,60 @@ if (!preg_match('/^\d{4}-\d{2}$/', $ym)) $ym = date('Y-m');
 $from = $ym.'-01';
 $to = date('Y-m-t', strtotime($from));
 
+$q = isset($_GET['q']) ? trim($_GET['q']) : '';
+
+
 $fname = $_SESSION['fname'] ?? '';
 $lname = $_SESSION['lname'] ?? '';
 $email = $_SESSION['email'] ?? '';
 $gender= $_SESSION['gender'] ?? '';
-$age    = $_SESSION['age'] ?? '';
 
-$st = mysqli_prepare($conn, "SELECT id, name, type, balance FROM accounts WHERE user_id=? ORDER BY id DESC");
-mysqli_stmt_bind_param($st, 'i', $user_id);
+
+$age = $_SESSION['age'] ?? null;
+
+// Try to fetch age (or DOB) from database users table
+$u = mysqli_prepare($conn, "SELECT age FROM users WHERE id=? LIMIT 1");
+if ($u) {
+  mysqli_stmt_bind_param($u, 'i', $user_id);
+  mysqli_stmt_execute($u);
+  $urow = mysqli_fetch_assoc(mysqli_stmt_get_result($u));
+  if ($urow) {
+    if (isset($urow['age']) && $urow['age'] !== '' && $urow['age'] !== null) {
+      $age = (int)$urow['age'];
+    } else {
+      $dob = $urow['dob'] ?? ($urow['birthdate'] ?? null);
+      if ($dob) {
+        $ts = strtotime($dob);
+        if ($ts !== false) {
+          $age = (int) floor( (time() - $ts) / (365.2425*24*3600) );
+        }
+      }
+    }
+  }
+}
+
+
+$acc_sql = "SELECT id, name, type, balance FROM accounts WHERE user_id=?";
+$acc_bind_types = "i";
+$acc_bind_vals = [$user_id];
+
+if ($q !== '') {
+  $acc_sql .= " AND (name LIKE CONCAT('%', ?, '%') OR type LIKE CONCAT('%', ?, '%'))";
+  $acc_bind_types .= "ss";
+  $acc_bind_vals[] = $q;
+  $acc_bind_vals[] = $q;
+}
+
+$acc_sql .= " ORDER BY id DESC";
+
+$st = mysqli_prepare($conn, $acc_sql);
+mysqli_stmt_bind_param($st, $acc_bind_types, ...$acc_bind_vals);
 mysqli_stmt_execute($st);
 $accounts = mysqli_fetch_all(mysqli_stmt_get_result($st), MYSQLI_ASSOC);
-
-$total_balance = 0; foreach($accounts as $a) $total_balance += (float)$a['balance'];
+$tb = mysqli_prepare($conn, "SELECT COALESCE(SUM(balance),0) FROM accounts WHERE user_id=?");
+mysqli_stmt_bind_param($tb, 'i', $user_id);
+mysqli_stmt_execute($tb);
+$total_balance = (float) mysqli_fetch_row(mysqli_stmt_get_result($tb))[0];
 
 $si = mysqli_prepare($conn, "SELECT income FROM monthly_incomes WHERE user_id=? AND ym=?");
 mysqli_stmt_bind_param($si, 'is', $user_id, $ym);
@@ -27,15 +69,25 @@ mysqli_stmt_execute($si);
 $row = mysqli_fetch_assoc(mysqli_stmt_get_result($si));
 $monthly_income = (float)($row['income'] ?? 0);
 
-$tx = mysqli_prepare($conn, "SELECT t.id, t.description, t.amount, t.category, t.date, t.account_id, a.name AS account_name
-                              FROM transactions t LEFT JOIN accounts a ON a.id=t.account_id
-                              WHERE t.user_id=? AND t.date BETWEEN ? AND ? AND t.amount < 0
-                              ORDER BY t.date DESC, t.id DESC");
-mysqli_stmt_bind_param($tx, 'iss', $user_id, $from, $to);
+$tx_sql = "SELECT t.id, t.description, t.amount, t.category, t.date, t.account_id, a.name AS account_name
+           FROM transactions t LEFT JOIN accounts a ON a.id=t.account_id
+           WHERE t.user_id=? AND t.date BETWEEN ? AND ? AND t.amount < 0";
+$bind_types = "iss";
+$bind_vals = [$user_id, $from, $to];
+if ($q !== '') {
+  $tx_sql .= " AND (t.description LIKE CONCAT('%', ?, '%') OR t.category LIKE CONCAT('%', ?, '%') OR a.name LIKE CONCAT('%', ?, '%'))";
+  $bind_types .= "sss";
+  $bind_vals[] = $q; $bind_vals[] = $q; $bind_vals[] = $q;
+}
+$tx_sql .= " ORDER BY t.date DESC, t.id DESC";
+$tx = mysqli_prepare($conn, $tx_sql);
+mysqli_stmt_bind_param($tx, $bind_types, ...$bind_vals);
 mysqli_stmt_execute($tx);
 $expenses = mysqli_fetch_all(mysqli_stmt_get_result($tx), MYSQLI_ASSOC);
-
-$monthly_expenses = 0; foreach($expenses as $e) $monthly_expenses += abs((float)$e['amount']);
+$ex = mysqli_prepare($conn, "SELECT COALESCE(SUM(ABS(amount)),0) FROM transactions WHERE user_id=? AND date BETWEEN ? AND ? AND amount < 0");
+mysqli_stmt_bind_param($ex, 'iss', $user_id, $from, $to);
+mysqli_stmt_execute($ex);
+$monthly_expenses = (float) mysqli_fetch_row(mysqli_stmt_get_result($ex))[0];
 $monthly_savings = $monthly_income - $monthly_expenses;
 
 $flash = get_flash();
@@ -45,7 +97,7 @@ $flash = get_flash();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard </title>
+  <title>User Dashboard</title>
   <link rel="stylesheet" href="dash.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -56,8 +108,10 @@ $flash = get_flash();
       <div class="logo"><h1><i class="fas fa-chart-line"></i> FinanceTracker</h1></div>
       <div class="header-actions">
         <form method="get" action="dashboard.php" style="display:flex;gap:.5rem;align-items:center;">
-          <input type="month" name="ym" value="<?php echo h($ym); ?>">
-          <button class="btn-secondary" type="submit">Change</button>
+          <input type="month" name="ym" value="<?php echo h($ym); ?>" />
+          <input type="text" name="q" value="<?php echo h($q); ?>" placeholder="Search accounts, description, category" style="width:16rem;">
+          <button class="btn-secondary" type="submit"><i class="fas fa-search"></i> Apply</button>
+          <?php if ($q !== ''): ?><a class="btn-secondary" href="dashboard.php?ym=<?php echo urlencode($ym); ?>">Clear</a><?php endif; ?>
         </form>
         <form method="post" action="manage.php" style="display:flex;gap:.5rem;align-items:center;margin-left:.5rem;">
           <input type="hidden" name="action" value="set_income">
@@ -75,7 +129,7 @@ $flash = get_flash();
   <div class="card-header"><h2>User Information</h2></div>
   <div class="card-content" id="userInfo">
     <p><strong>Name:</strong> <span><?php echo h(trim(($fname.' '.$lname)) ?: ($_SESSION['username'] ?? '')); ?></span></p>
-    <p><strong>Age:</strong><span><?php echo h($age); ?></span></p>
+    <p><strong>Age:</strong> <span><?php echo ($age !== null && $age !== '') ? h($age) : '—'; ?></span></p>
     <p><strong>Email:</strong> <span><?php echo h($email); ?></span></p>
     <p><strong>Gender:</strong> <span><?php echo h($gender); ?></span></p>
   </div>
@@ -90,14 +144,14 @@ $flash = get_flash();
     <div class="card"><div class="card-content"><div class="card-info"><h3>Total Balance</h3><p class="amount"><?php echo bdt($total_balance); ?></p></div><div class="card-icon wallet"><i class="fas fa-wallet"></i></div></div></div>
     <div class="card"><div class="card-content"><div class="card-info"><h3>Monthly Income</h3><p class="amount"><?php echo bdt($monthly_income); ?></p></div><div class="card-icon income"><i class="fas fa-arrow-up"></i></div></div></div>
     <div class="card"><div class="card-content"><div class="card-info"><h3>Monthly Expenses</h3><p class="amount"><?php echo bdt($monthly_expenses); ?></p></div><div class="card-icon expense"><i class="fas fa-arrow-down"></i></div></div></div>
-    <div class="card"><div class="card-content"><div class="card-info"><h3>Monthly Savings</h3><p class="amount"><?php echo bdt($monthly_savings); ?></p></div><div class="card-icon savings"><i class="fas fa-piggy-bank"></i></div></div></div>
+    <div class="card"><div class="card-content"><div class="card-info"><h3>Balance remaining after expense</h3><p class="amount"><?php echo bdt($monthly_savings); ?></p></div><div class="card-icon savings"><i class="fas fa-piggy-bank"></i></div></div></div>
   </div>
 
   <div class="dashboard-layout">
     <div class="left-column">
       <div class="card">
         <div class="card-header">
-          <h2>Account Overview</h2>
+          <h2>Balance Overview</h2>
           <a class="btn-primary" href="account_new.php?ym=<?php echo h($ym); ?>"><i class="fas fa-plus"></i> Add Account</a>
         </div>
         <div class="accounts-list">

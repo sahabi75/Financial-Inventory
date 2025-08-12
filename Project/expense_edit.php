@@ -18,28 +18,35 @@ $accounts = mysqli_fetch_all(mysqli_stmt_get_result($st), MYSQLI_ASSOC);
 
 $pos_amount = abs((float)$tx['amount']); // stored negative
 ?>
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Edit Expense</title><link rel="stylesheet" href="styles.css"></head>
-<body class="container">
-  <div class="card"><div class="card-header"><h2>Edit Expense</h2></div>
-    <div class="card-content">
-      <form method="post" action="manage.php">
-        <input type="hidden" name="action" value="update_expense">
-        <input type="hidden" name="id" value="<?php echo (int)$tx['id']; ?>">
-        <input type="hidden" name="ym" value="<?php echo h($ym); ?>">
-        <div class="form-group"><label>Description</label><input type="text" name="description" required value="<?php echo h($tx['description']); ?>"></div>
-        <div class="form-group"><label>Amount (৳)</label><input type="number" step="0.01" name="amount" required value="<?php echo h($pos_amount); ?>"></div>
-        <div class="form-group"><label>Category</label><input type="text" name="category" required value="<?php echo h($tx['category']); ?>"></div>
-        <div class="form-group"><label>Account</label>
-          <select name="account_id">
-            <option value="">(No account)</option>
-            <?php foreach ($accounts as $a): $sel = ($tx['account_id']==$a['id'])?'selected':''; ?>
-              <option value="<?php echo (int)$a['id']; ?>" <?php echo $sel; ?>><?php echo h($a['name'].' — '.$a['type']); ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
-        <div class="form-group"><label>Date</label><input type="date" name="date" required value="<?php echo h($tx['date']); ?>"></div>
-        <div class="form-actions"><a class="btn-secondary" href="dashboard.php?ym=<?php echo h($ym); ?>">Cancel</a><button class="btn-primary" type="submit">Save</button></div>
-      </form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Expense</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="container">
+    <div class="card"><div class="card-header"><h2>Edit Expense</h2></div>
+      <div class="card-content">
+        <form method="post" action="manage.php">
+          <input type="hidden" name="action" value="update_expense">
+          <input type="hidden" name="id" value="<?php echo (int)$tx['id']; ?>">
+          <input type="hidden" name="ym" value="<?php echo h($ym); ?>">
+          <div class="form-group"><label>Description</label><input type="text" name="description" required value="<?php echo h($tx['description']); ?>"></div>
+          <div class="form-group"><label>Amount (৳)</label><input type="number" step="0.01" name="amount" required value="<?php echo h($pos_amount); ?>"></div>
+          <div class="form-group"><label>Category</label><input type="text" name="category" required value="<?php echo h($tx['category']); ?>"></div>
+          <div class="form-group"><label>Account</label>
+            <select name="account_id">
+              <option value="">(No account)</option>
+              <?php foreach ($accounts as $a): $sel = ($tx['account_id']==$a['id'])?'selected':''; ?>
+                <option value="<?php echo (int)$a['id']; ?>" <?php echo $sel; ?>><?php echo h($a['name'].' — '.$a['type']); ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div class="form-group"><label>Date</label><input type="date" name="date" required value="<?php echo h($tx['date']); ?>"></div>
+          <div class="form-actions"><a class="btn-secondary" href="dashboard.php?ym=<?php echo h($ym); ?>">Cancel</a><button class="btn-primary" type="submit">Save</button></div>
+        </form>
+      </div>
     </div>
-  </div>
-</body></html>
+  </body>
+</html>
