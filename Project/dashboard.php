@@ -98,14 +98,26 @@ $flash = get_flash();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Dashboard</title>
+  <link rel="stylesheet" href="about_us.css">
   <link rel="stylesheet" href="dash.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 <header class="header">
+  <nav class="navbar">
+      <div class="logo"><h2><i class="fas fa-chart-line"></i> Financial Inventory</h2></div>
+        <ul class="nav-link">
+            <li><a href="index.html">Home</a></li>
+              <li><a href="dashboard.php">Dashboard</a></li>
+              <li><a href="programs.html">Programs</a></li>
+              <li><a href="about_us.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="logout.php">Logout</a></li>
+        </ul>
+  </nav>
   <div class="container">
     <div class="header-content">
-      <div class="logo"><h1><i class="fas fa-chart-line"></i> FinanceTracker</h1></div>
+      
       <div class="header-actions">
         <form method="get" action="dashboard.php" style="display:flex;gap:.5rem;align-items:center;">
           <input type="month" name="ym" value="<?php echo h($ym); ?>" />
